@@ -1,15 +1,16 @@
 <?php 
-       require_once 'mysql_connect.php';                        //Connecting to db
+     // require_once 'mysql_connect.php';                        //Connecting to db
        $today = date("Y-m-d");
+       require_once 'sqlFunctions/taskListFunc.php';              
 
        if(isset($_POST['addTask'])) {
-        require_once 'sqlRequests/tasklistAddTask.php';         //To Add new task request
+        taskListAddTask($_SESSION["user_id"],$_POST['taskItem'],$today);    //To Add new task request
     } elseif(isset($_POST['deleteAll'])) {
-        require_once 'sqlRequests/tasklistDeleteAllTasks.php';  //To Delete all tasks request      
-    } elseif(isset($_POST['doneAll'])) {
-        require_once 'sqlRequests/tasklistDoneAllTasks.php';    //To Do all tasks request        
+        tasklistDeleteAllTasks($_SESSION["user_id"]);              //To Delete all tasks request   
+    } elseif(isset($_POST['doneAll'])) {  
+        tasklistDoneAllTasks($_SESSION["user_id"]);                //To Do all tasks request    
     }
 
-    require_once 'sqlRequests/tasklistPrintAllTasks.php';       //To Print all tasks request 
+      tasklistPrintAllTasks($_SESSION["user_id"]);                //To Print all tasks request 
 
     ?>
