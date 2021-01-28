@@ -15,14 +15,20 @@ function tasklistDeleteAllTasks($user_id,$pdo) {
 }
 
 function tasklistDoneAllTasks($user_id,$pdo) {
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4a1eb6558dcd6ceb929a441a4f7cfb5b379cca0b
 
 	$sql = 'UPDATE `tasks` SET `status`=1 WHERE `user_id`='.$user_id.'';
     $query = $pdo->query($sql);
 }
 
 function tasklistPrintAllTasks($user_id,$pdo) {
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4a1eb6558dcd6ceb929a441a4f7cfb5b379cca0b
     $sql='SELECT * FROM `tasks` WHERE `user_id`=:user_id';
     $query=$pdo->prepare($sql);
     $query->execute(['user_id'=>$user_id]);

@@ -2,6 +2,7 @@
 //require_once 'mysql_connect.php';
 
 function authGetUserId($login,$pdo) {
+<<<<<<< HEAD
 	$sql='SELECT `id`, `password` FROM `users` WHERE `login`=:login';
 	$query=$pdo->prepare($sql);
 	$query->execute(['login'=>$login]);
@@ -41,5 +42,18 @@ if ($user->id == 0) {
 	header(''.$header_loc.'');
 	return $return;
 
+=======
+$sql='SELECT `id`, `password` FROM `users` WHERE `login`=:login';
+$query=$pdo->prepare($sql);
+$query->execute(['login'=>$login]);
+$user = $query->fetch(PDO::FETCH_OBJ);
+return $user;
+}
+
+function authAddUser($login,$hash,$pdo) {
+$sql='INSERT INTO users(login,password) VALUES(?,?)';
+$query=$pdo->prepare($sql);
+$query->execute([$login,$hash]);
+>>>>>>> 4a1eb6558dcd6ceb929a441a4f7cfb5b379cca0b
 }
 ?>
