@@ -9,9 +9,9 @@ require_once 'mysql_connect.php';
 require_once 'sqlFunctions/taskButtonFunc.php';	
 
 if(isset($_POST['delete'])) {
-	deleteThisTask($task_to_delete,$pdo);
+	deleteThisTask($task_to_delete,intval($_SESSION["user_id"]),$pdo);
 } elseif(isset($_POST['done'])) {
-	changeStatus($done_task,$pdo);
+	changeStatus($done_task,intval($_SESSION["user_id"]),$pdo);
 }
 header('Location: tasklist.php ');
 ?>
