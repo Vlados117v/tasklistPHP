@@ -1,49 +1,26 @@
 <?php
 
-function taskListAddTask($user_id,$taskItem,$today) {
-	$user = 'mysql';
-	$pass = 'mysql';
-	$db = 'tasklist';
-	$host = 'localhost';
-	$dsn='mysql:host='.$host.';dbname='.$db;
-	$pdo=new PDO($dsn,$user,$pass);
+function taskListAddTask($user_id,$taskItem,$today,$pdo) {
+
 	$sql='INSERT INTO tasks(user_id,description,created_at,status) VALUES(?,?,?,?)';
 	$query=$pdo->prepare($sql);
 	$query->execute([$user_id,$taskItem,$today,0]);
 	echo "32123423";
 }
 
-function tasklistDeleteAllTasks($user_id) {
-	$user = 'mysql';
-	$pass = 'mysql';
-	$db = 'tasklist';
-	$host = 'localhost';
-	$dsn='mysql:host='.$host.';dbname='.$db;
-	$pdo=new PDO($dsn,$user,$pass);
+function tasklistDeleteAllTasks($user_id,$pdo) {
+
     $sql = 'DELETE FROM `tasks` WHERE `user_id`='.$user_id.'';
     $query = $pdo->query($sql);
 }
 
-function tasklistDoneAllTasks($user_id) {
-	$user = 'mysql';
-	$pass = 'mysql';
-	$db = 'tasklist';
-	$host = 'localhost';
-	$dsn='mysql:host='.$host.';dbname='.$db;
-	$pdo=new PDO($dsn,$user,$pass);
+function tasklistDoneAllTasks($user_id,$pdo) {
 
 	$sql = 'UPDATE `tasks` SET `status`=1 WHERE `user_id`='.$user_id.'';
     $query = $pdo->query($sql);
 }
 
-function tasklistPrintAllTasks($user_id) {
-	$user = 'mysql';
-	$pass = 'mysql';
-	$db = 'tasklist';
-	$host = 'localhost';
-	$dsn='mysql:host='.$host.';dbname='.$db;
-	$pdo=new PDO($dsn,$user,$pass);
-
+function tasklistPrintAllTasks($user_id,$pdo) {
     $sql='SELECT * FROM `tasks` WHERE `user_id`=:user_id';
     $query=$pdo->prepare($sql);
     $query->execute(['user_id'=>$user_id]);
