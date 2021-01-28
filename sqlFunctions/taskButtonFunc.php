@@ -6,10 +6,7 @@ function deleteThisTask($task_to_delete,$pdo) {
 }
 
 function changeStatus($done_task,$pdo) {
-<<<<<<< HEAD
 
-=======
->>>>>>> 4a1eb6558dcd6ceb929a441a4f7cfb5b379cca0b
 	$sql='SELECT `status` FROM `tasks` WHERE `id`='.$done_task.'';
 	$query=$pdo->prepare($sql);
 	$query->execute(['login'=>$login]);
@@ -23,5 +20,6 @@ function changeStatus($done_task,$pdo) {
 		$query = $pdo->query($sql);	
 	}
 }
+
 
 ?>
